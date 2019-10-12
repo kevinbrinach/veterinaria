@@ -2,6 +2,8 @@ import React from 'react';
 import Cita from './Cita';
 import PropTypes from 'prop-types';
 
+//ListaCitas es un Stateless Functional Component
+
 
 
 const ListaCitas = ({citas, eliminarCita}) =>  {
@@ -14,7 +16,7 @@ const ListaCitas = ({citas, eliminarCita}) =>  {
             <div className="card-body">
                 <h2 className="card-title text-center">{mensaje}</h2>
                     <div className="lista-citas">
-                        {citas.map(cita =>(
+                        {citas.map(cita =>( //recorre el arreglo de citas
                             <Cita 
                                 key={cita.id}
                                 cita={cita}

@@ -5,6 +5,9 @@ import NuevaCita from './components/NuevaCita';
 import ListaCitas from './components/ListaCitas';
 import PropTypes from 'prop-types';
 
+//Este proyecto esta hecho con Class Components
+//Aqui Header, NuevaCita y ListaCitas son importados, todos ellos son hijos de la Class Component App
+
 
 class App extends Component {
   state = {  
@@ -17,7 +20,7 @@ class App extends Component {
     const citasLS = localStorage.getItem('citas');
     if(citasLS) {
       this.setState({
-        citas : JSON.parse(citasLS)
+        citas : JSON.parse(citasLS) //parse convierte el string almacenado en local storage a un arreglo de objetos
       })
     }
   }
@@ -39,7 +42,7 @@ class App extends Component {
 
   //elimina las citas del state
   eliminarCita = id => {
-    //primero se debe tomar una copia del state
+    //primero se debe tomar una copia del state, nunca se debe hacer cambios sobre el state directamente
     const citasActuales = [...this.state.citas];
 
     //despues se usa filter para sacar el elemento @id del arreglo, con el filter el arreglo citas pasaria a obtener todas las citas que no tengan un id igual al que el usuario esta pasando
@@ -48,7 +51,7 @@ class App extends Component {
 
     //por ultimo hay que actualizar el state
     this.setState({
-      citas
+      citas //como el state y la constante se llaman citas se pasa solo citas, sino seria citas : citas
     })
     
   }
@@ -87,3 +90,4 @@ NuevaCita.propTypes = {
 
 
 export default App;
+

@@ -11,7 +11,7 @@ const Cita = ({cita, eliminarCita}) => (
             <p className="card-text"><span>Hora: </span>{cita.hora}</p>
             <p className="card-text"><span>Sintomas: </span></p>
             <p className="card-text">{cita.sintomas}</p>
-            <button className="btn btn-danger" onClick={() => eliminarCita(cita.id)}>
+            <button className="btn btn-danger" onClick={() => eliminarCita(cita.id)}> {/*se pone eliminarCita como arrow function para que no se ejecute apenas se llame a la funcion sino que espere a que suceda el evento */}
                 Borrar &times;
             </button>
         </div>

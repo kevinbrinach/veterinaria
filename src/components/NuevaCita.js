@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
+//NuevaCita es un Class Component
 
+//stateInicial es lo que se usa para reiniciar el formulario cada vez que se lo rellena
 const stateInicial = { 
     cita : {
         mascota : '',
@@ -26,6 +28,7 @@ class NuevaCita extends Component {
             cita : {
                 //el ...this.state.cita toma una copia del state y reescribe el valor que se esta cambiando mientras mantiene los demas
                 ...this.state.cita,
+                //carga los datos en el campo que se este modificando, el name se tiene que corresponder con el value del input
                 [e.target.name] : e.target.value
             }
 
@@ -40,7 +43,7 @@ class NuevaCita extends Component {
        //extraer los valores del state
        const { mascota, propietario, fecha, hora, sintomas} = this.state.cita
 
-       //validar que todos los campos esten llenos
+       //validar que todos los campos esten completados
        if (mascota ==='' || propietario ==='' || fecha === '' || hora === '' || sintomas === '') {
             this.setState({
             error: true
@@ -55,15 +58,16 @@ class NuevaCita extends Component {
        nuevaCita.id = uuid();
           
 
-       //Agregar la cita al state de app si los datos son correctos
+       //Agregar la cita al state de App si los datos son correctos
        this.props.crearNuevaCita(nuevaCita)
 
-       //Colocar en el state el stateInicial
+       //Colocar en el state el stateInicial (reiniciar el formulario)
        this.setState({
            ...stateInicial
         })
     }
 
+    //si hay un cambio en el state se vuelve a ejecutar render
     render() { 
         
         //extraer valor del state
@@ -91,7 +95,7 @@ class NuevaCita extends Component {
                                 value={this.state.cita.mascota}
                             />
                         </div>
-                    </div> {/* form-group*/}
+                    </div> {/* form-group: Nombre Mascota*/}
 
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">Nombre propietario
@@ -106,7 +110,7 @@ class NuevaCita extends Component {
                                 value={this.state.cita.propietario}
                             />
                         </div>
-                    </div> {/* form-group*/}
+                    </div> {/* form-group: Nombre propietario*/}
                     
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">Fecha</label>
@@ -118,7 +122,7 @@ class NuevaCita extends Component {
                                 onChange={this.handleChange} //cuando el usuario cambia el valor(evento) se ejecuta este metodo(handleChange)
                                 value={this.state.cita.fecha}
                             />
-                        </div>
+                        </div> 
                    
                         <label className="col-sm-4 col-lg-2 col-form-label">Hora</label>
                         <div className="col-sm-8 col-lg-4">
@@ -130,7 +134,7 @@ class NuevaCita extends Component {
                                 value={this.state.cita.hora}
                             />
                         </div>
-                    </div> {/* form-group*/}
+                    </div> {/* form-group: fecha y hora*/}
 
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">Nombre Mascota</label>
@@ -143,7 +147,7 @@ class NuevaCita extends Component {
                                 value={this.state.cita.sintomas}
                             ></textarea>
                          </div>
-                    </div> {/* form-group*/}
+                    </div> {/* form-group: sintomas*/}
 
 
                     <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar nueva cita" />
